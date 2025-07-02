@@ -1,0 +1,19 @@
+ Find the Parity Number. 
+ Input:5 
+ Output:Parity = 0
+Approach:
+✅ Step 1: Count how many 1-bits (set bits) are in the binary form of n using Integer.bitCount(n).
+
+✅ Step 2: Check if that count is odd or even by doing count % 2.
+
+✅ Step 3: Print 1 if the count is odd (parity = 1), else print 0 (parity = 0).
+
+//Code
+public class Main{ 
+	public static void main(String[] args) {
+int n=5;
+int count=Integer.bitCount(n);
+int parity=count%2;
+System.out.println("parity " + parity);
+	}
+}
