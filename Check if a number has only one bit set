@@ -1,0 +1,29 @@
+ Check if a number has only one bit set 
+Approach:
+✅ Step 1: Check if number is positive
+The number must be greater than 0.
+If it’s 0 or negative → it cannot have only one bit set.
+✅Step 2: Use this bitwise trick
+For a number n, do:
+n & (n - 1)
+If the result is 0 → it means only one bit is set.
+//code
+public class Main {
+    
+    // Method to check one-bit set
+    public boolean oneBitSet(String numStr) {
+        int n = Integer.parseInt(numStr);
+        
+        if (n <= 0) return false;
+        
+        return (n & (n - 1)) == 0;
+    }
+    
+    public static void main(String[] args) {
+        Main t = new Main();
+        
+        System.out.println(t.oneBitSet("8")); // true
+        System.out.println(t.oneBitSet("6")); // false
+    }
+}
+
