@@ -26,4 +26,64 @@ public class Main {
         System.out.println(t.oneBitSet("6")); // false
     }
 }
+// 🚀 Toggle Bits in a Range
+    Input : n=50;L=2; R=4;
+   Output: Original number: 50
+    Number after toggling bits from 2 to 4: 60
+Approach:
+✅Create a mask with 1s between L and R, then XOR it with n to flip those bits.
+✅((1 << R) - 1) ^ ((1 << (L-1)) - 1)
+//code
+public class toggleBitsInRange
+{
+	public static int toggleBitsInRange(int n,int L,int R) {
+	int mask=((1<<R)-1)^((1<<(L-1))-1);
+	return n^mask;
+	}
+	public static void main(String[] args){
+	    int n=50;
+	    int L=2;
+	    int R=4;
+	      int result = toggleBitsInRange(n, L, R);
+	    System.out.println("Original No."+n);
+	    System.out.println("Number of after toggleBitsInRange"+L+"to"+R+":"+result);
+	}
+} 
+// Sum of XORs of all pairs in an array
+✅ Approach:
 
+1️⃣ Shift 1 left by bit positions
+→ (1 << bit) creates a mask where only the bit-th position is 1.
+2️ AND the mask with num
+→ num & (1 << bit) isolates that specific bit in num.
+3️⃣ Check if result is not zero
+→ If non-zero, that bit in num is set (i.e. it’s 1); otherwise it’s not set (i.e. it’s 0).
+public class SumOfXORs {
+    public static int sumXOR(int[] arr) {
+        int n = arr.length;
+        int total = 0;
+
+        for (int bit = 0; bit < 32; bit++) {
+            int countSet = 0;
+
+            for (int num : arr) {
+                if ((num & (1 << bit)) != 0) {
+                    countSet++;
+                }
+            }
+
+            int countUnset = n - countSet;
+            int pairs = countSet * countUnset;
+            int contribution = pairs * (1 << bit);
+
+            total += contribution;
+        }
+
+        return total;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        System.out.println(sumXOR(arr)); // Output → 6
+    }
+}
