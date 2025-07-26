@@ -1,0 +1,116 @@
+Square of Sorted Array (leetcode 977)
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class SortedSquares {
+
+    // 🔸 1. main() method pehle likha gaya hai
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input: size of array
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
+
+        // Input: elements of array
+        int[] nums = new int[n];
+        System.out.println("Enter " + n + " elements:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        // Call method & print result
+        int[] result = sortedSquares(nums);
+        System.out.println("Sorted Squares: " + Arrays.toString(result));
+
+        sc.close();
+    }
+
+    // 🔸 2. sortedSquares() method baad mein likha gaya hai
+    public static int[] sortedSquares(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+
+        int left = 0, right = n - 1, index = n - 1;
+
+        while (left <= right) {
+            int leftSq = nums[left] * nums[left];
+            int rightSq = nums[right] * nums[right];
+
+            if (leftSq > rightSq) {
+                result[index--] = leftSq;
+                left++;
+            } else {
+                result[index--] = rightSq;
+                right--;
+            }
+        }
+
+        return result;
+    }
+}
+
+//✅✅✅Valid Palindrom (leetcode 125)
+import java.util.Scanner;
+
+public class ValidPalindrome {
+
+    // 🔹 Logic method: Checks if a given string is a valid palindrome
+    public static boolean isPalindrome(String s) {
+        // Convert to lowercase and remove non-alphanumeric characters
+        s = s.toLowerCase();
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            // Skip non-alphanumeric from left
+            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                left++;
+            }
+
+            // Skip non-alphanumeric from right
+            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                right--;
+            }
+
+            // Compare characters
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    // 🔹 Main method: Input + Calling logic method
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a string:");
+        String input = sc.nextLine();
+
+        boolean result = isPalindrome(input);
+
+        if (result) {
+            System.out.println("The string is a valid palindrome.");
+        } else {
+            System.out.println("The string is NOT a valid palindrome.");
+        }
+
+        sc.close();
+    }
+}
+✅✅✅Remove Duplicates from Sorted Array(Leetcode 26)
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int x=0;
+        for(int y:nums){
+            if(x==0 || y!=nums[x-1])
+            nums[x++]=y;
+        }
+        return x;
+    }
+}
