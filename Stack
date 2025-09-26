@@ -1,0 +1,22 @@
+✅✈Valid Paranthese (Leetcode 20)
+
+//code
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> st = new Stack<>();
+
+        for (char x : s.toCharArray()) {
+            if (st.isEmpty()) {
+                st.push(x);
+            } else if ((x == ')' && st.peek() == '(') ||
+                       (x == '}' && st.peek() == '{') ||
+                       (x == ']' && st.peek() == '[')) {
+                st.pop();
+            } else {
+                st.push(x);
+            }
+        }
+
+        return st.isEmpty();
+    }
+}
